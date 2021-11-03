@@ -5,7 +5,14 @@ IPython `pdb`
   :target: https://travis-ci.org/gotcha/ipdb
 .. image:: https://codecov.io/gh/gotcha/ipdb/branch/master/graphs/badge.svg?style=flat
   :target: https://codecov.io/gh/gotcha/ipdb?branch=master
-   
+
+Update 2021/11/3
+___
+Add Skip parameter
+
+About "skip": https://docs.python.org/3/library/pdb.html
+> class pdb.Pdb(completekey='tab', stdin=None, stdout=None, skip=None, nosigint=False, readrc=True)
+
 Install
 ---
 
