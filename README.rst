@@ -7,20 +7,25 @@ IPython `pdb`
   :target: https://codecov.io/gh/gotcha/ipdb?branch=master
 
 Update 2021/11/3
-___
+-------------------
+
 Add Skip parameter
 
 About "skip": https://docs.python.org/3/library/pdb.html
-> class pdb.Pdb(completekey='tab', stdin=None, stdout=None, skip=None, nosigint=False, readrc=True)
+
+::
+
+  class pdb.Pdb(completekey='tab', stdin=None, stdout=None, skip=None, nosigint=False, readrc=True)`
 
 Install
----
+-------------------
 
-```bash
-git clone https://github.com/matln/ipdb.git
-cd ipdb
-pip install --editable .
-```
+
+.. code-block:: bash
+
+  git clone https://github.com/matln/ipdb.git
+  cd ipdb
+  pip install --editable .
 
 Use
 ---
