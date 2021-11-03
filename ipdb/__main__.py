@@ -54,8 +54,6 @@ def _init_pdb(context=None, skip=[], commands=[]):
         context = os.getenv("IPDB_CONTEXT_SIZE", get_context_from_config())
     if skip == []:
         skip = os.getenv("IPDB_SKIP", get_skip_from_config())
-        f = open("/home/lijianchen/tmp", "w")
-        print(skip, file=f)
     debugger_cls = _get_debugger_cls()
     try:
         p = debugger_cls(context=context, skip=skip)
