@@ -27,6 +27,8 @@ Install
   cd ipdb
   pip install --editable .
 
+  ln -s ./HOME_ipdb.backup ./.ipdb
+
 Use
 ---
 
