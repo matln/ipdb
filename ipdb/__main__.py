@@ -7,6 +7,7 @@
 from __future__ import print_function
 import os
 import sys
+import re
 
 from decorator import contextmanager
 
@@ -48,12 +49,16 @@ def _get_debugger_cls():
     return shell.debugger_cls
 
 
-def _init_pdb(context=None, commands=[]):
+def _init_pdb(context=None, skip=[], commands=[]):
     if context is None:
         context = os.getenv("IPDB_CONTEXT_SIZE", get_context_from_config())
+    if skip == []:
+        skip = os.getenv("IPDB_SKIP", get_skip_from_config())
+        f = open("/home/lijianchen/tmp", "w")
+        print(skip, file=f)
     debugger_cls = _get_debugger_cls()
     try:
-        p = debugger_cls(context=context)
+        p = debugger_cls(context=context, skip=skip)
     except TypeError:
         p = debugger_cls()
     p.rcLines.extend(commands)
@@ -68,13 +73,13 @@ def wrap_sys_excepthook():
         sys.excepthook = BdbQuit_excepthook
 
 
-def set_trace(frame=None, context=None, cond=True):
+def set_trace(frame=None, context=None, skip=[], cond=True):
     if not cond:
         return
     wrap_sys_excepthook()
     if frame is None:
         frame = sys._getframe().f_back
-    p = _init_pdb(context).set_trace(frame)
+    p = _init_pdb(context, skip).set_trace(frame)
     if p and hasattr(p, 'shell'):
         p.shell.restore_sys_module_state()
 
@@ -87,6 +92,24 @@ def get_context_from_config():
         return 3
     except ValueError:
         value = parser.get("ipdb", "context")
+        raise ValueError(
+            "In %s,  context value [%s] cannot be converted into an integer."
+            % (parser.filepath, value)
+        )
+
+
+def get_skip_from_config():
+    try:
+        parser = get_config()
+        ## Return a list
+        # return parser["ipdb"]["skip"].split(', ')
+
+        ## Specify multiple delimiters
+        return re.split('[,]\s*', parser["ipdb"]["skip"])
+    except (configparser.NoSectionError, configparser.NoOptionError):
+        return 3
+    except ValueError:
+        value = parser.get("ipdb", "skip")
         raise ValueError(
             "In %s,  context value [%s] cannot be converted into an integer."
             % (parser.filepath, value)

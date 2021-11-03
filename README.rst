@@ -5,6 +5,15 @@ IPython `pdb`
   :target: https://travis-ci.org/gotcha/ipdb
 .. image:: https://codecov.io/gh/gotcha/ipdb/branch/master/graphs/badge.svg?style=flat
   :target: https://codecov.io/gh/gotcha/ipdb?branch=master
+   
+Install
+---
+
+```bash
+git clone https://github.com/matln/ipdb.git
+cd ipdb
+pip install --editable .
+```
 
 Use
 ---
