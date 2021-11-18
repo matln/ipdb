@@ -11,7 +11,7 @@ Update 2021/11/3
 
 Add Skip parameter
 
-About "skip": https://docs.python.org/3/library/pdb.html
+About "skip": https://docs.python.org/3/library/pdb.html#pdb.Pdb
 
 ::
 
