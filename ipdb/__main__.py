@@ -104,14 +104,8 @@ def get_skip_from_config():
 
         ## Specify multiple delimiters
         return re.split('[,]\s*', parser["ipdb"]["skip"])
-    except (configparser.NoSectionError, configparser.NoOptionError):
-        return 3
-    except ValueError:
-        value = parser.get("ipdb", "skip")
-        raise ValueError(
-            "In %s,  context value [%s] cannot be converted into an integer."
-            % (parser.filepath, value)
-        )
+    except KeyError:
+        return None
 
 
 class ConfigFile(object):
