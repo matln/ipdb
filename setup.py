@@ -39,6 +39,7 @@ setup(name='ipdb',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: POSIX :: Linux',
         'Operating System :: Microsoft :: Windows',
@@ -54,18 +55,16 @@ setup(name='ipdb',
       include_package_data=True,
       zip_safe=True,
       test_suite='tests',
-      python_requires=">=2.7",
-      install_requires=[
-          'setuptools',
-      ],
+      python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
       extras_require={
-          ':python_version == "2.7"': ['ipython >= 5.1.0, < 6.0.0', 'toml >= 0.10.2', 'decorator < 5.0.0'],
-          # No support for python 3.0, 3.1, 3.2.
+          ':python_version == "2.7"': ['ipython >= 5.1.0, < 6.0.0', 'toml >= 0.10.2', 'decorator < 5.0.0', 'pathlib'],
+          # No support for python 3.0, 3.1, 3.2., 3.3
           # FTR, `decorator` is also a dependency of Ipython.
           ':python_version == "3.4"': ['ipython >= 6.0.0, < 7.0.0', 'toml >= 0.10.2', 'decorator < 5.0.0'],
           ':python_version == "3.5"': ['ipython >= 7.0.0, < 7.10.0', 'toml >= 0.10.2', 'decorator'],
-          ':python_version == "3.6"': ['ipython >= 7.10.0, < 7.17.0', 'toml >= 0.10.2', 'decorator'],
-          ':python_version > "3.6"': ['ipython >= 7.17.0', 'toml >= 0.10.2', 'decorator'],
+          ':python_version == "3.6"': ['ipython >= 7.16.3, < 7.17.0', 'tomli', 'decorator'],
+          ':python_version > "3.6" and python_version < "3.11"': ['ipython >= 7.31.1', 'tomli', 'decorator'],
+          ':python_version >= "3.11"': ['ipython >= 7.31.1', 'decorator'],
       },
       tests_require=[
           'mock; python_version<"3"'
